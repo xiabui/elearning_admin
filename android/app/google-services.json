@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "223025126968",
+    "firebase_url": "https://elearning-test-services.firebaseio.com",
+    "project_id": "elearning-test-services",
+    "storage_bucket": "elearning-test-services.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223025126968:android:c019d612c01dc9bb3ad0cd",
+        "android_client_info": {
+          "package_name": "com.example.elearning_dashboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223025126968-p65ipk1gme7o3ei9d7cp6mlno9qcikla.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_a94SWYyf9eehsPFWHvw1KWMLHC-vjws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223025126968-p65ipk1gme7o3ei9d7cp6mlno9qcikla.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223025126968:android:b4dec8dca76eb5973ad0cd",
+        "android_client_info": {
+          "package_name": "vn.edu.tdmu.elearningadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223025126968-p65ipk1gme7o3ei9d7cp6mlno9qcikla.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_a94SWYyf9eehsPFWHvw1KWMLHC-vjws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223025126968-p65ipk1gme7o3ei9d7cp6mlno9qcikla.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223025126968:android:91c170b89b41306b3ad0cd",
+        "android_client_info": {
+          "package_name": "vn.tdmu.edu.elearningadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223025126968-p65ipk1gme7o3ei9d7cp6mlno9qcikla.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_a94SWYyf9eehsPFWHvw1KWMLHC-vjws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223025126968-p65ipk1gme7o3ei9d7cp6mlno9qcikla.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
