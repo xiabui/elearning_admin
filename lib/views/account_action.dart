@@ -60,7 +60,7 @@ class _AccountActionState extends State<AccountAction> {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
                   decoration: BoxDecoration(
                       color: Color(0xfff5f6fa),
                       borderRadius: BorderRadius.circular(10)),
@@ -114,8 +114,8 @@ class _AccountActionState extends State<AccountAction> {
                     ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     GestureDetector(
                       onTap: () {
@@ -127,25 +127,65 @@ class _AccountActionState extends State<AccountAction> {
                         });
                       },
                       child: Container(
-                        height: 100,
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 6),
                         padding: EdgeInsets.all(10),
-                        width: MediaQuery.of(context).size.width * 0.47,
                         decoration: BoxDecoration(
-                            color: Color(0xffff0033),
+                            //color: Color(0xffff0033),
+                            color: Colors.green,
                             borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Icon(
                               EvaIcons.flash,
                               color: Colors.white,
                             ),
                             SizedBox(
-                              height: 10,
+                              width: 10,
                             ),
                             Text(
-                              "KHÔI PHỤC\nTÀI KHOẢN NHANH",
+                              "Khôi phục Tài khoản nhanh",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                        margin: EdgeInsets.fromLTRB(0, 10, 0, 6),
+                        padding: EdgeInsets.all(5),
+                        child: Text("Mật khẩu người dùng",
+                            style: TextStyle(fontWeight: FontWeight.normal))),
+                    GestureDetector(
+                      onTap: () {
+                        confirmDialog(() {
+                          resetPassword(widget.user.dn, getRandomString(10));
+                        });
+                      },
+                      child: Container(
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 6),
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            //color: Color(0xff666666),
+                            color: Colors.cyan,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              EvaIcons.keypad,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Đổi mật khẩu Ngẫu nhiên",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -158,71 +198,27 @@ class _AccountActionState extends State<AccountAction> {
                     GestureDetector(
                       onTap: () {
                         confirmDialog(() {
-                          resetPassword(widget.user.dn, getRandomString(10));
-                        });
-                      },
-                      child: Container(
-                        height: 100,
-                        padding: EdgeInsets.all(10),
-                        width: MediaQuery.of(context).size.width * 0.47,
-                        decoration: BoxDecoration(
-                            color: Color(0xff666666),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Icon(
-                              EvaIcons.keypad,
-                              color: Colors.white,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "ĐỔI MẬT KHẨU\nNGẪU NHIÊN",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        confirmDialog(() {
                           _showChangeCustomPasswordDialog();
                         });
                       },
                       child: Container(
-                        height: 100,
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 6),
                         padding: EdgeInsets.all(10),
-                        width: MediaQuery.of(context).size.width * 0.47,
                         decoration: BoxDecoration(
                             color: Color(0xffFFCc66),
                             borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Icon(
                               EvaIcons.person,
                               color: Colors.white,
                             ),
                             SizedBox(
-                              height: 10,
+                              width: 10,
                             ),
                             Text(
-                              "ĐỔI MẬT KHẨU\nCÁ NHÂN",
+                              "Đổi mật khẩu tùy chỉnh",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -239,25 +235,24 @@ class _AccountActionState extends State<AccountAction> {
                         });
                       },
                       child: Container(
-                        height: 100,
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 6),
                         padding: EdgeInsets.all(10),
-                        width: MediaQuery.of(context).size.width * 0.47,
                         decoration: BoxDecoration(
                             color: Color(0xffCC6633),
                             borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Icon(
                               EvaIcons.archive,
                               color: Colors.white,
                             ),
                             SizedBox(
-                              height: 10,
+                              width: 10,
                             ),
                             Text(
-                              "ĐỔI MẬT KHẨU\nMẶC ĐỊNH",
+                              "Đổi mật khẩu Mặc định",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -266,15 +261,12 @@ class _AccountActionState extends State<AccountAction> {
                           ],
                         ),
                       ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                    ),
+                    Container(
+                        margin: EdgeInsets.fromLTRB(0, 10, 0, 6),
+                        padding: EdgeInsets.all(5),
+                        child: Text("Tài khoản người dùng",
+                            style: TextStyle(fontWeight: FontWeight.normal))),
                     GestureDetector(
                       onTap: () {
                         confirmDialog(() {
@@ -282,25 +274,25 @@ class _AccountActionState extends State<AccountAction> {
                         });
                       },
                       child: Container(
-                        height: 100,
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 6),
                         padding: EdgeInsets.all(10),
-                        width: MediaQuery.of(context).size.width * 0.47,
                         decoration: BoxDecoration(
-                            color: Color(0xff990066),
+                            //color: Color(0xff990066),
+                            color: Colors.red,
                             borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Icon(
                               EvaIcons.personDelete,
                               color: Colors.white,
                             ),
                             SizedBox(
-                              height: 10,
+                              width: 10,
                             ),
                             Text(
-                              "XÓA TÀI KHOẢN\nNGƯỜI DÙNG",
+                              "Xóa Tài khoản",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -321,25 +313,24 @@ class _AccountActionState extends State<AccountAction> {
                         });
                       },
                       child: Container(
-                        height: 100,
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 6),
                         padding: EdgeInsets.all(10),
-                        width: MediaQuery.of(context).size.width * 0.47,
                         decoration: BoxDecoration(
                             color: Color(0xff6600FF),
                             borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Icon(
                               EvaIcons.email,
                               color: Colors.white,
                             ),
                             SizedBox(
-                              height: 10,
+                              width: 10,
                             ),
                             Text(
-                              "CẬP NHẬT EMAIL\nTRƯỜNG",
+                              "Cập nhật Email Trường",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -348,39 +339,30 @@ class _AccountActionState extends State<AccountAction> {
                           ],
                         ),
                       ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                    ),
                     GestureDetector(
                       onTap: () {
                         showBottomSheet(context);
                       },
                       child: Container(
-                        height: 100,
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 6),
                         padding: EdgeInsets.all(10),
-                        width: MediaQuery.of(context).size.width * 0.47,
                         decoration: BoxDecoration(
                             color: Colors.blue,
                             borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Icon(
                               EvaIcons.personDone,
                               color: Colors.white,
                             ),
                             SizedBox(
-                              height: 10,
+                              width: 10,
                             ),
                             Text(
-                              "CHỈNH SỬA THÔNG TIN NGƯỜI DÙNG",
+                              "Chỉnh sửa thông tin",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -392,13 +374,6 @@ class _AccountActionState extends State<AccountAction> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 40,
-                ),
-                Center(
-                  child: Text(
-                      "This just is a temp UI/UX! It's maybe changes soon!"),
-                )
               ],
             ),
           ),
@@ -430,7 +405,7 @@ class _AccountActionState extends State<AccountAction> {
           return AlertDialog(
             title: Text("Nhập vào mật khẩu cần đổi"),
             content: Container(
-              height: 120,
+              height: 130,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -466,7 +441,7 @@ class _AccountActionState extends State<AccountAction> {
                         resetPassword(widget.user.dn, userPassword.text);
                       } else {
                         _showDialog(
-                          "Thất bại", "Không có gì sao mà đổi mật khẩu -_-!");
+                            "Thất bại", "Không có gì sao mà đổi mật khẩu -_-!");
                       }
                     } else {
                       _showDialog(

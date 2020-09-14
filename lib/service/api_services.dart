@@ -16,11 +16,11 @@ class ApiProvider {
 
   Future<bool> requestLoginAPI(context, username, password) async {
     Map<String, String> body = {'username': username, 'password': password};
-    final response = await http.post(baseUrl + '/auth/token.ldap', body: body);
+    final response = await http.post(baseUrl + '/auth/apikey.ldap', body: body);
 
     if (response.statusCode == 200) {
       final responseJson = json.decode(response.body);
-      saveCurrentUser(responseJson['data']['token']);
+      saveCurrentUser(responseJson['data']['apikey']);
       return true;
     } else {
       final responseJson = json.decode(response.body);
@@ -35,7 +35,7 @@ class ApiProvider {
 
     var uri = baseUrl + '/ldap/users.search?q=' + userid;
     var response = await http.get(uri, headers: {
-      HttpHeaders.authorizationHeader: 'JWT $token',
+      HttpHeaders.authorizationHeader: 'Token $token',
       HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
     });
     if (response.statusCode == 200) {
@@ -63,7 +63,7 @@ class ApiProvider {
     var uri = baseUrl + '/ldap/users.update?dn=' + dn;
     var response = await http.post(uri,
         headers: {
-          HttpHeaders.authorizationHeader: 'JWT $token',
+          HttpHeaders.authorizationHeader: 'Token $token',
           HttpHeaders.contentTypeHeader: 'application/json',
         },
         body: body);
@@ -86,7 +86,7 @@ class ApiProvider {
     var uri = baseUrl + '/ldap/users.update?dn=' + dn;
     var response = await http.post(uri,
         headers: {
-          HttpHeaders.authorizationHeader: 'JWT $token',
+          HttpHeaders.authorizationHeader: 'Token $token',
           HttpHeaders.contentTypeHeader: 'application/json',
         },
         body: body);
@@ -110,7 +110,7 @@ class ApiProvider {
     var uri = baseUrl + '/ldap/users.update?dn=' + dn;
     var response = await http.post(uri,
         headers: {
-          HttpHeaders.authorizationHeader: 'JWT $token',
+          HttpHeaders.authorizationHeader: 'Token $token',
           HttpHeaders.contentTypeHeader: 'application/json',
         },
         body: body);
@@ -139,7 +139,7 @@ class ApiProvider {
     var uri = baseUrl + '/ldap/users.create';
     var response = await http.post(uri,
         headers: {
-          HttpHeaders.authorizationHeader: 'JWT $token',
+          HttpHeaders.authorizationHeader: 'Token $token',
           HttpHeaders.contentTypeHeader: 'application/json',
         },
         body: body);
@@ -166,7 +166,7 @@ class ApiProvider {
     var response = await http.delete(
       uri,
       headers: {
-        HttpHeaders.authorizationHeader: 'JWT $token',
+        HttpHeaders.authorizationHeader: 'Token $token',
         HttpHeaders.contentTypeHeader: 'application/json',
       },
     );
@@ -186,7 +186,7 @@ class ApiProvider {
 
     var uri = baseUrl + '/profile';
     var response = await http.get(uri, headers: {
-      HttpHeaders.authorizationHeader: 'JWT $token',
+      HttpHeaders.authorizationHeader: 'Token $token',
       HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
     });
 
