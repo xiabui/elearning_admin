@@ -1,7 +1,7 @@
 import 'package:elearningadmin/resource/constant.dart';
 import 'package:elearningadmin/service/api_services.dart';
 import 'package:elearningadmin/views/account_tool.dart';
-import 'package:elearningadmin/views/dashboard.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,6 +28,19 @@ class _LoginFormState extends State<LoginForm> {
     usernameController.dispose();
     passwordController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    hasLogin().then((value) {
+      if (value) {
+        Navigator.of(context).pop();
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (BuildContext context) => AccountTools()));
+      }
+    });
+
+    super.initState();
   }
 
   @override
@@ -215,7 +228,7 @@ class _LoginFormState extends State<LoginForm> {
     ProgressDialog pr = ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false, showLogs: false);
     pr.style(
-        message: 'Please wait...',
+        message: 'Đang đăng nhập...',
         borderRadius: 10.0,
         backgroundColor: Colors.white,
         progressWidget: CircularProgressIndicator(),
@@ -234,15 +247,36 @@ class _LoginFormState extends State<LoginForm> {
             context, usernameController.text, passwordController.text)
         .then((value) {
       if (value == true) {
+        apiProvider.getMyInfo();
+        pr.update(
+            message: "Đang lấy thông tin...",
+            progressWidget: CircularProgressIndicator(),
+            progress: 0.0,
+            maxProgress: 100.0,
+            progressTextStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 13.0,
+                fontWeight: FontWeight.w400),
+            messageTextStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 19.0,
+                fontWeight: FontWeight.w600));
+
         pr.hide();
+        Navigator.of(context).pop();
         Navigator.of(context).push(MaterialPageRoute(
             builder: (BuildContext context) => AccountTools()));
-        apiProvider.getMyInfo();
       } else {
         pr.hide();
         _showDialog();
       }
     });
+  }
+
+  Future<bool> hasLogin() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    if (preferences.getString('token') != null) return true;
+    return false;
   }
 
   _showDialog() {

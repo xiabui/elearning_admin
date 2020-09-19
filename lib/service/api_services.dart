@@ -105,9 +105,9 @@ class ApiProvider {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String token = preferences.getString('token');
     final body = jsonEncode(
-        {'firstname': firstname, 'lastname': lastname, 'email': email});
+        {'firstname': lastname, 'lastname': firstname, 'email': email});
 
-    var uri = baseUrl + '/ldap/users.update?dn=' + dn;
+    var uri = baseUrl + '/ldap/users.update?dn=$dn';
     var response = await http.post(uri,
         headers: {
           HttpHeaders.authorizationHeader: 'Token $token',
@@ -119,6 +119,7 @@ class ApiProvider {
       //final responseJson = json.decode(response.body);
       return true;
     } else {
+      print(response.statusCode);
       //print('Login failed');
       return false;
     }
@@ -130,8 +131,8 @@ class ApiProvider {
     String token = preferences.getString('token');
     final body = jsonEncode({
       'username': username,
-      'firstname': firstname,
-      'lastname': lastname,
+      'firstname': lastname,
+      'lastname': firstname,
       'email': email,
       'password': password
     });

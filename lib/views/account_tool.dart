@@ -2,9 +2,8 @@ import 'package:elearningadmin/model/user.dart';
 import 'package:elearningadmin/service/api_services.dart';
 import 'package:elearningadmin/views/account_action.dart';
 import 'package:elearningadmin/views/add_user.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:elearningadmin/views/widgets/app_drawer.dart';
-import 'package:flutter/services.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
@@ -27,22 +26,11 @@ class _AccountToolsState extends State<AccountTools> {
 
   Future<void> scanBarcodeNormal() async {
     String barcodeScanRes;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          "#ff6666", "Cancel", true, ScanMode.BARCODE);
-      print(barcodeScanRes);
-    } on PlatformException {
-      barcodeScanRes = 'Failed to get platform version.';
-    }
+    var result = await BarcodeScanner.scan();
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
+  
     setState(() {
-      _scanBarCode = barcodeScanRes;
+      _scanBarCode = result.rawContent;
       inputController.text = _scanBarCode;
       print(_scanBarCode);
     });
@@ -203,7 +191,9 @@ class _AccountToolsState extends State<AccountTools> {
                       : Expanded(
                           child: Center(
                           child: loading
-                              ? Text("Đang tải...")
+                              ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [CircularProgressIndicator(), SizedBox(width: 10,),Text("Đang tải...")])
                               : Text(
                                   "Chưa tìm kiếm hoặc chưa có dữ liệu người dùng."),
                         )),

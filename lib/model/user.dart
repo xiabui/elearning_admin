@@ -8,7 +8,7 @@ String utf8convert(String text) {
 }
 
 class User extends Entity {
-  User({this.email, this.firstname, this.lastname, this.dn});
+  User({this.email, this.firstname, this.lastname, this.dn, this.cohort});
 
   User.fromJson(Map<String, dynamic> json) {
     //this.username = json['username'];
@@ -17,6 +17,7 @@ class User extends Entity {
     this.lastname = utf8convert(json['givenName']);
     this.dn = json['dn'];
     this.lastLogin = json['loggedin_at'];
+    this.cohort = json['cohort'];
   }
 
   //String username;
@@ -25,6 +26,7 @@ class User extends Entity {
   String lastname;
   String dn;
   String lastLogin;
+  List<dynamic> cohort = [];
 
   @override
   Map<String, dynamic> toJson() {
@@ -35,6 +37,7 @@ class User extends Entity {
     data['last_name'] = this.lastname;
     data['dn'] = this.dn;
     data['loggedin_at'] = this.lastLogin;
+    data['cohort'] = this.cohort;
     return data;
   }
 }

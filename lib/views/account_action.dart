@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
+
 class AccountAction extends StatefulWidget {
   AccountAction({this.user});
   final User user;
@@ -405,7 +406,7 @@ class _AccountActionState extends State<AccountAction> {
           return AlertDialog(
             title: Text("Nhập vào mật khẩu cần đổi"),
             content: Container(
-              height: 130,
+              //height: 130,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -449,6 +450,8 @@ class _AccountActionState extends State<AccountAction> {
                       userPassword.clear();
                       userReTypePassword.clear();
                     }
+                    userPassword.clear();
+                    userReTypePassword.clear();
                   },
                   child: Text("Dứt luôn"))
             ],
@@ -463,7 +466,7 @@ class _AccountActionState extends State<AccountAction> {
         apiProvider.changePassword(dn, password).then((value2) {
           if (value2 == true) {
             _showDialog("Thành công",
-                "Đã thay đổi mật khẩu người dùng thành công! Mật khẩu là username.");
+                "Đã thay đổi mật khẩu người dùng thành công! Mật khẩu là $password.");
           } else {
             _showDialog("Thất bại",
                 "Đã có lỗi đã xảy ra, vui lòng thông báo cho Admin App khi gặp lỗi này. Code: #HOTPASS02");
@@ -517,9 +520,10 @@ class _AccountActionState extends State<AccountAction> {
 
   void showBottomSheet(context) {
     showModalBottomSheet(
+        isScrollControlled: true,
         context: context,
-        builder: (context) {
-          return Container(
+        builder: (context) => KeyboardDismisser (
+          child: Container(
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
@@ -527,6 +531,7 @@ class _AccountActionState extends State<AccountAction> {
             ),
             height: MediaQuery.of(context).size.height * 0.6,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               //crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
@@ -628,7 +633,7 @@ class _AccountActionState extends State<AccountAction> {
                 //     children: [
                 //       Text("Lớp: "),
                 //       Container(
-                //         width: MediaQuery.of(context).size.width * 0.65,
+                //         width: MediaQuery.of(context).size.width * 0.55,
                 //         child: TextField(
                 //             controller: userCohort,
                 //             decoration: InputDecoration(
@@ -672,8 +677,8 @@ class _AccountActionState extends State<AccountAction> {
                 )
               ],
             ),
-          );
-        });
+          )
+    ));
   }
 
   void updateUserInfo(userPass, userRePass) {
@@ -702,6 +707,7 @@ class _AccountActionState extends State<AccountAction> {
         }
       });
     } else if (userPassword.text == '') {
+      print(widget.user.dn);
       apiProvider
           .updateUserInfo(userFirstName.text, userLastName.text, userEmail.text,
               widget.user.dn)

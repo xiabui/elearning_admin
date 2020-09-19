@@ -37,9 +37,8 @@ dev_dependencies:
   syncfusion_flutter_charts:
   flutter_screenutil: ^0.4.2
   flutter_swiper: ^1.1.6
-  flutter_barcode_scanner: ^1.0.1
-  shared_preferences:
   barcode_scan:
+  shared_preferences:
   random_color:
   flutter_masked_text:
   flutter_datetime_picker:
@@ -58,6 +57,13 @@ dev_dependencies:
   progress_dialog:
   firebase_database:
   keyboard_dismisser:
+  flutter_launcher_icons: "^0.8.0"
+  sweetalert:
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon.png"
     
 
 # For information on the generic Dart part of this file, see the
@@ -65,7 +71,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
